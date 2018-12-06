@@ -124,46 +124,11 @@
 	=>
 	(assert (edad (min-num-question "¿Cual es su edad? " 65)))
 )
-(defrule characterisation::sexo "Pregunta por sexo"
+(defrule characterisation::cantEjercicio "Pregunta por ejercicio"
 	(declare (salience 10))
-	(not (sexo ?))
+	(not (cantEjercicio ?))
 	=>
-	(assert (sexo (multioption "¿Es hombre o mujer?" hombre mujer)))
-)
-(defrule characterisation::caidas "Pregunta por caidas"
-	(not (caidas ?))
-	=>
-	(assert (caidas (yes-no-question "¿Ha tenido caidas recientemente? ")))
-)
-(defrule characterisation::movilidad "Pregunta por movilidad"
-	(caidas ?)
-	(not (probMov ?))
-	=>
-	(assert (probMov (yes-no-question "¿Tiene problemas de movilidad? ")))
-)
-(defrule characterisation::cardiaco "Pregunta por cardiaco"
-	(not (cardiaco ?))
-	=>
-	(assert (cardiaco (yes-no-question "¿Tiene problemas cardiacos? ")))
-)
-(defrule characterisation::osteoporosis "Pregunta por osteoporosis"
-	(not (osteoporosis ?))
-	=>
-	(assert (osteoporosis (yes-no-question "¿Tiene problemas de osteoporosis? ")))
-)
-
-
-(defrule characterisation::mujerImpliesOsteo "Si es mujer, mirar osteoporosis"
-	(declare (salience 10))
-	(sexo mujer)
-	=>
-	(assert (osteoporosis TRUE))
-)
-(defrule characterisation::caidaImpliesMov "Si tiene caidas, tiene problemas de movilidad"
-	(declare (salience 10))
-	(caidas TRUE)
-	=>
-	(assert (probMov TRUE))
+	(assert (cantEjercicio (num-question "¿Cuanto dias de ejercicio a la semana? " 0 5)))
 )
 
 (defrule characterisation::toProcessing "Switches focus to processing after nothing else to do"
