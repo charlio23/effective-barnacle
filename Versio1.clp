@@ -1,4 +1,4 @@
-; Thu Dec 06 17:15:43 CET 2018
+; Thu Dec 06 17:25:29 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -7,18 +7,9 @@
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
 	(role abstract)
-	(multislot Ejercicio
-		(type INSTANCE)
-;+		(allowed-classes Ejercicios)
-		(cardinality 1 ?VARIABLE)
-		(create-accessor read-write))
 	(single-slot Intensidad
 		(type SYMBOL)
 		(allowed-values Facil Medio Dificil)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Sets
-		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Duracion
@@ -27,46 +18,16 @@
 		(range 0 90)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
-	(single-slot Programacion
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
 	(single-slot Nombre
 		(type STRING)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Mediante
-		(type INSTANCE)
-;+		(allowed-classes Ejercicios)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(single-slot Peso
 		(type INTEGER)
 ;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Sexo
-		(type SYMBOL)
-		(allowed-values Masculino Femenino)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Mejoras
-		(type INSTANCE)
-;+		(allowed-classes)
-;+		(cardinality 0 1)
-		(create-accessor read-write))
-	(single-slot Edad
-		(type INTEGER)
-		(range 0 150)
-		(default 65)
-;+		(cardinality 1 1)
-		(create-accessor read-write))
-	(single-slot Repeticiones
-		(type INTEGER)
-;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Ejercicios
+(defclass Ejercicio
 	(is-a USER)
 	(role concrete)
 	(single-slot Nombre
@@ -85,24 +46,25 @@
 ;+		(cardinality 1 1)
 		(create-accessor read-write)))
 
-(defclass Aerobicos
-	(is-a Ejercicios)
+(defclass Aerobico
+	(is-a Ejercicio)
 	(role concrete))
 
 (defclass Musculacion
-	(is-a Ejercicios)
+	(is-a Ejercicio)
 	(role concrete))
 
 (defclass Equilibrio
-	(is-a Ejercicios)
+	(is-a Ejercicio)
 	(role concrete))
 
 (defclass Flexibilidad
-	(is-a Ejercicios)
+	(is-a Ejercicio)
 	(role concrete))
-
+	
+	
 (definstances instancies
-; Thu Dec 06 17:15:43 CET 2018
+; Thu Dec 06 17:25:29 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -161,22 +123,21 @@
 	(Intensidad Dificil)
 	(Nombre "Rotacion de hombros"))
 
-([Anciano_Class27] of  Aerobicos
+([Anciano_Class27] of  Aerobico
 
 	(Duracion 10)
 	(Intensidad Facil)
 	(Nombre "Correr"))
 
-([Anciano_Class28] of  Aerobicos
+([Anciano_Class28] of  Aerobico
 
 	(Duracion 20)
 	(Intensidad Medio)
 	(Nombre "Correr"))
 
-([Anciano_Class29] of  Aerobicos
+([Anciano_Class29] of  Aerobico
 
 	(Duracion 30)
 	(Intensidad Dificil)
 	(Nombre "Correr"))
-
 )
