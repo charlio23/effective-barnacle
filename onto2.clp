@@ -285,6 +285,12 @@
 
 ;;; Here go all the rules for question asking:
 
+(defrule characterisation::nombre "Pregunta por nombre"
+	(declare (salience 10))
+	(not (nombre ?))
+	=>
+	(assert (nombre (general-question "¿Como se llama? ")))
+)
 (defrule characterisation::edad "Pregunta por edad"
 	(declare (salience 10))
 	(not (edad ?))
@@ -490,9 +496,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(deffunction printmod::Myprint ($?list)
+(deffunction printmod::Myprint (?n $?list)
 	(printout t crlf crlf)
-	(printout t "Rutina de Ejercicios" crlf)
+	(printout t "Rutina Personalizada de Ejercicios para " ?n crlf)
 	(printout t crlf)
 	(loop-for-count (?i 1 (length$ $?list))
 		(printout t "Dia " ?i ": ")
@@ -510,11 +516,18 @@
 
 (defrule printmod::printer2 ""
 	(oneDone TRUE)
+	(nombre ?n)
 	(resultado $?result)
 	=>
-	(Myprint $?result)
+	(Myprint ?n $?result)
 )
 
+
+(defrule printmod::fin ""
+	(declare (salience -20))
+	=>
+	(exit)
+)
 
 (reset)
 (run)
