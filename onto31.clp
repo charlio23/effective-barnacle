@@ -1,8 +1,11 @@
-(defglobal ?*scoreBase* = 500)
+(defglobal ?*scoreBase* = 350)
 (defglobal ?*plus* = 50)
 (defglobal ?*penal* = -100)
-(defglobal ?*aburrido* = -10)
-(defglobal ?*intMov* = 4)
+(defglobal ?*plusMov* = 75)
+(defglobal ?*penalMov* = -150)
+(defglobal ?*penalBajaInt* = -15)
+(defglobal ?*penalAltaInt* = -30)
+(defglobal ?*bajaInt* = 4)
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
@@ -754,7 +757,6 @@
 
 (deffunction characterisation::imc (?alt ?pes)
     (bind ?im (/ ?pes (* (/ ?alt 100) (/ ?alt 100))))
-	?im
 )
 
 ;calcul del IMC per veure si hi ha sobrepes
@@ -815,10 +817,20 @@
     (nivel ?niv) ; this is the what the user is interested in
     ?fact <- (rutinaList (rutinas $?list))
     =>
-    (progn$ (?curr-rutina $?list)		
-		(if (and (>= (send ?curr-rutina get-IntensidadMaxima) ?niv) (>= ?niv (send ?curr-rutina get-IntensidadMinima)))
+    (progn$ (?curr-rutina $?list)
+		(bind ?max (send ?curr-rutina get-IntensidadMaxima))
+		(bind ?min (send ?curr-rutina get-IntensidadMinima))
+		(if (and (>= ?max ?niv) (>= ?niv ?min)))
 			then 
             (send ?curr-rutina put-Score ?*scoreBase*)
+        )
+		(if (< ?max ?niv)
+			then 
+            (send ?curr-rutina put-Score (+ ?*scoreBase* (* (* (- ?niv ?max) (- ?niv ?max)) ?*penalBajaInt*)))
+        )
+		(if (< ?niv ?min)
+			then 
+            (send ?curr-rutina put-Score (+ ?*scoreBase* (* (* (- ?min ?niv) (- ?min ?niv)) ?*penalAltaInt*)))
         )
 	)
 )
@@ -927,33 +939,70 @@
     (progn$ (?curr-rutina $?list)
         (bind $?list2 (send ?curr-rutina get-MusculosTrabajados))
         (progn$ (?curr-parte $?list2)
-            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Cadera")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*intMov*))
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Cadera")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
             )       
-            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Piernas")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*intMov*))
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Piernas")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
             )       
-            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Rodilla")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*intMov*))
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Rodilla")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
             )       
-            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Hombros")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*intMov*))
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Hombros")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
             )       
-            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Pectoral")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*intMov*))
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Pectoral")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
             )       
-            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Espalda")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*intMov*))
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Espalda")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
             )       
         )
 	)
-    
+)
+
+
+(defrule processing::benRutinasMov "modify the score of each rutina"
+    (nivel ?niv) ; this is the what the user is interested in
+    ?fact <- (rutinaList (rutinas $?list))
+	(probMov TRUE)
+    (zonaAfectada ?za)
+    =>
+    (progn$ (?curr-rutina $?list)
+        (bind $?list2 (send ?curr-rutina get-MusculosTrabajados))
+        (progn$ (?curr-parte $?list2)
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Cadera")) (< (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+                then
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusMov*))
+            )       
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Piernas")) (< (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+                then
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusMov*))
+            )       
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Rodilla")) (< (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+                then
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusMov*))
+            )       
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Hombros")) (< (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+                then
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusMov*))
+            )       
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Pectoral")) (< (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+                then
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusMov*))
+            )       
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Espalda")) (< (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+                then
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusMov*))
+            )       
+        )
+	)
 )
 
 (defrule processing::toConstruction "Switches to construction"
@@ -1032,12 +1081,3 @@
 
 )
 
-
-
-(defrule printmod::printer2 ""
-	(oneDone TRUE)
-	(nombre ?n)
-	(resultado $?result)
-	=>
-	(Myprint ?n $?result)
-)
