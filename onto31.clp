@@ -808,7 +808,7 @@
 	(bind $?list (insert$ $?list (+ (length$ $?list) 1) ?rut))
 	(modify ?fact (rutinas $?list))
     (send ?rut put-Score 0)
-    (printout t Rutinas)
+    (printout t Rutinas crlf)
 )
 
 (defrule processing::scoreRutinas "modify the score of each rutina"
@@ -816,11 +816,10 @@
     (nivel ?niv) ; this is the what the user is interested in
     ?fact <- (rutinaList (rutinas $?list))
     =>
-    (progn$ (?curr-rutina $?list)
-		(if (and (<= (send ?curr-rutina get-IntensidadMaxima) ?niv) (<= ?niv (send ?curr-rutina get-IntensidadMinima)))
+    (progn$ (?curr-rutina $?list)		
+		(if (and (>= (send ?curr-rutina get-IntensidadMaxima) ?niv) (>= ?niv (send ?curr-rutina get-IntensidadMinima)))
 			then 
             (send ?curr-rutina put-Score ?*scoreBase*)
-            (printout t Rutina aceptada)
         )
 	)
 )
@@ -1022,13 +1021,12 @@
 		(printout t "Esta formada por los siguientes ejercicios: " crlf)
 		(bind $?list2 (send (nth$ ?i ?list) get-Ejercicios))
         (progn$ (?curr-ejer $?list2)
-			(bind ?nombre ?curr-ejer get-Nombre)
-			(bind ?duracion ?curr-ejer get-Duracion)
-			(printout t ?nombre " durante " ?duracion " minutos")
+			(bind ?nombreEjer (send ?curr-ejer get-Nombre))
+			(bind ?duracionEjer (send ?curr-ejer get-Duracion))
+			(printout t ?nombreEjer " durante " ?duracionEjer " minutos")
 			(printout t crlf)
         )		
-
-
+		(printout t crlf)
 	)
 	(printout t crlf crlf)
 
@@ -1044,6 +1042,3 @@
 	=>
 	(Myprint ?n $?result)
 )
-
-
-
