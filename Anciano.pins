@@ -1,0 +1,24 @@
+; Sat Dec 08 15:45:39 CET 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Anciano_Class0] of  Problemas
+
+	(Nombre "Caridiovascular"))
+
+([Anciano_Class10015] of  Problemas
+
+	(Nombre "Obesidad"))
+
+([Anciano_Class10017] of  Problemas
+
+	(Nombre "Diabetes Tipo 2"))
+
+([Anciano_Class10018] of  Problemas
+
+	(Nombre "Pulmonar"))
+
+([Anciano_Class5] of  Problemas
+
+	(Nombre "Hipertension"))
