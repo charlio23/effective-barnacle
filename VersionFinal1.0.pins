@@ -1,0 +1,297 @@
+; Sat Dec 08 19:33:39 CET 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+([Anciano_Class0] of  Problemas
+
+	(Nombre "Caridiovascular"))
+
+([Anciano_Class10001] of  Parte
+
+	(Nombre "Cadera"))
+
+([Anciano_Class10003] of  Problemas
+
+	(Nombre "Musculo esqueletico"))
+
+([Anciano_Class10004] of  Problemas
+
+	(Nombre "Artritis"))
+
+([Anciano_Class10007] of  Aerobico
+
+	(Duracion 60)
+	(Nombre "Andar"))
+
+([Anciano_Class10008] of  Aerobico
+
+	(Duracion 30)
+	(Nombre "Correr"))
+
+([Anciano_Class10009] of  Aerobico
+
+	(Duracion 30)
+	(Nombre "Nadar"))
+
+([Anciano_Class10010] of  Aerobico
+
+	(Duracion 30)
+	(Nombre "Bicicleta"))
+
+([Anciano_Class10011] of  Aerobico
+
+	(Duracion 30)
+	(Nombre "Andar"))
+
+([Anciano_Class10012] of  Aerobico
+
+	(Duracion 45)
+	(Nombre "Bicicleta"))
+
+([Anciano_Class10013] of  Aerobico
+
+	(Duracion 45)
+	(Nombre "Nadar"))
+
+([Anciano_Class10015] of  Problemas
+
+	(Nombre "Obesidad"))
+
+([Anciano_Class10017] of  Problemas
+
+	(Nombre "Diabetes Tipo 2"))
+
+([Anciano_Class10018] of  Problemas
+
+	(Nombre "Pulmonar"))
+
+([Anciano_Class20003] of  Parte
+
+	(Nombre "Espalda"))
+
+([Anciano_Class20004] of  Parte
+
+	(Nombre "Piernas"))
+
+([Anciano_Class20006] of  Parte
+
+	(Nombre "Hombros"))
+
+([Anciano_Class20007] of  Parte
+
+	(Nombre "Pectoral"))
+
+([Anciano_Class20008] of  Parte
+
+	(Nombre "Cardio"))
+
+([Anciano_Class20015] of  Aerobico
+
+	(Duracion 60)
+	(Nombre "BodyCombat"))
+
+([Anciano_Class20016] of  Aerobico
+
+	(Duracion 45)
+	(Nombre "Baile"))
+
+([Anciano_Class20017] of  Aerobico
+
+	(Duracion 45)
+	(Nombre "Padel"))
+
+([Anciano_Class20018] of  Aerobico
+
+	(Duracion 30)
+	(Nombre "Remo"))
+
+([Anciano_Class20019] of  Aerobico
+
+	(Duracion 45)
+	(Nombre "Remo"))
+
+([Anciano_Class20020] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Pararse Sobre un Pie"))
+
+([Anciano_Class20021] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Caminar de talón a dedos"))
+
+([Anciano_Class20022] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Flexion Plantar"))
+
+([Anciano_Class20023] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Flexion de Rodilla"))
+
+([Anciano_Class20024] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Flexion de Cadera"))
+
+([Anciano_Class20025] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Extension de Cadera"))
+
+([Anciano_Class20026] of  Equilibrio
+
+	(Duracion 5)
+	(Nombre "Levantamiento Lateral de la Pierna"))
+
+([Anciano_Class20027] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Espalda"))
+
+([Anciano_Class20028] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Cuadriceps"))
+
+([Anciano_Class20029] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Gluteos"))
+
+([Anciano_Class20030] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Cadera"))
+
+([Anciano_Class20031] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Gemelos"))
+
+([Anciano_Class20032] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Rodillas"))
+
+([Anciano_Class20034] of  Flexibilidad
+
+	(Duracion 2)
+	(Nombre "Estiramiento de Musculos Isquio-Tibiales"))
+
+([Anciano_Class20035] of  Flexibilidad
+
+	(Duracion 5)
+	(Nombre "Estiramiento de Brazos"))
+
+([Anciano_Class20036] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Sentadillas")
+	(Porcentaje+del+Maximo 30))
+
+([Anciano_Class20037] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Sentadillas")
+	(Porcentaje+del+Maximo 45))
+
+([Anciano_Class20038] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Sentadillas")
+	(Porcentaje+del+Maximo 60))
+
+([Anciano_Class20039] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Press de Banca")
+	(Porcentaje+del+Maximo 60))
+
+([Anciano_Class20040] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Press de Banca")
+	(Porcentaje+del+Maximo 45))
+
+([Anciano_Class20041] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Press de Banca")
+	(Porcentaje+del+Maximo 30))
+
+([Anciano_Class20042] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Peso Muerto")
+	(Porcentaje+del+Maximo 30))
+
+([Anciano_Class20043] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Peso Muerto")
+	(Porcentaje+del+Maximo 45))
+
+([Anciano_Class20044] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Peso Muerto")
+	(Porcentaje+del+Maximo 60))
+
+([Anciano_Class20046] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Press Militar")
+	(Porcentaje+del+Maximo 30))
+
+([Anciano_Class20047] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Press Militar")
+	(Porcentaje+del+Maximo 60))
+
+([Anciano_Class20048] of  Musculacion
+
+	(Duracion 20)
+	(Nombre "Press Militar")
+	(Porcentaje+del+Maximo 45))
+
+([Anciano_Class20049] of  Aerobico
+
+	(Duracion 60)
+	(Nombre "Aquagym"))
+
+([Anciano_Class20051] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10004]
+		[Anciano_Class0]
+		[Anciano_Class10018]
+		[Anciano_Class10015]
+		[Anciano_Class10017]
+		[Anciano_Class5])
+	(Duracion 80)
+	(Ejercicios
+		[Anciano_Class20034]
+		[Anciano_Class20031]
+		[Anciano_Class20030]
+		[Anciano_Class20032]
+		[Anciano_Class10007]
+		[Anciano_Class20031]
+		[Anciano_Class20028]
+		[Anciano_Class20030]
+		[Anciano_Class20034])
+	(IntensidadMaxima "3")
+	(IntensidadMinima 2)
+	(Nombre "Rutina1")
+	(Score 0))
+
+([Anciano_Class20055] of  Parte
+
+	(Nombre "Rodilla"))
+
+([Anciano_Class5] of  Problemas
+
+	(Nombre "Hipertension"))
