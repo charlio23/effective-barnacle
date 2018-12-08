@@ -1,4 +1,4 @@
-; Sat Dec 08 19:39:09 CET 2018
+; Sat Dec 08 23:32:51 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -48,7 +48,7 @@
 ;+		(cardinality 0 1)
 		(create-accessor read-write))
 	(single-slot IntensidadMaxima
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot Ejercicios
@@ -131,7 +131,7 @@
 ;+		(allowed-classes Parte)
 		(create-accessor read-write))
 	(single-slot IntensidadMaxima
-		(type STRING)
+		(type INTEGER)
 ;+		(cardinality 1 1)
 		(create-accessor read-write))
 	(multislot Beneficia
