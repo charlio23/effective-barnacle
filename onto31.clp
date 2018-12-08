@@ -625,7 +625,7 @@
 )
 
 (defrule characterisation::cantEjercicio "Asks for cantEjercicio"
-	(declare (salience 5))
+	(declare (salience 7))
 	(not (cantEjercicio ?))
 	=>
 	(assert (cantEjercicio (num-question "Cuantos dias de ejercicio a la semana? " 0 7))) ;; TODO: change random values
@@ -633,14 +633,15 @@
 
 
 (defrule characterisation::movilidad "Pregunta por movilidad"
-	(declare (salience 5))
+	(declare (salience 7))
 	(not (probMov ?))
 	=>
 	(assert (probMov (yes-no-question "Tiene problemas de movilidad? ")))
 )
 
 (defrule characterisation::zonaAfectada "Pregunta por zona afectada"
-	(declare (salience 5))
+	(declare (salience 6))
+	(not (zonaAfectada ?))
 	(probMov TRUE)
 	=>
 	(assert (zonaAfectada (multioption "Cual es la zona afectada?" piernas brazos ambas)))
@@ -649,8 +650,7 @@
 (defrule characterisation::caidas "Pregunta por caidas"
 	(declare (salience 5))
 	(not (caidas ?))
-	(probMov TRUE)
-	(zonaAfectada piernas)
+	(probMov FALSE)
 	=>
 	(assert (caidas (yes-no-question "Ha tenido caidas recientemente? ")))
 )
