@@ -2,7 +2,7 @@
 (defglobal ?*plus* = 50)
 (defglobal ?*penal* = -100)
 (defglobal ?*aburrido* = -10)
-(defglobal ?*intMov* = -100)
+(defglobal ?*intMov* = -4)
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
@@ -771,7 +771,6 @@
 		else
 		(assert (obesidad FALSE))
 	)
-	(printout t ?im crlf)
 )
 
 (defrule characterisation::toProcessing "Switches focus to processing after nothing else to do"
