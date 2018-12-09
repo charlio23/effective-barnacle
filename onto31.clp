@@ -1,4 +1,4 @@
-(defglobal ?*scoreBase* = 1000)
+(defglobal ?*scoreBase* = 10000)
 (defglobal ?*plus* = 50)
 (defglobal ?*penal* = -100)
 (defglobal ?*plusMov* = 75)
@@ -6,7 +6,8 @@
 (defglobal ?*penalBajaInt* = -15)
 (defglobal ?*penalAltaInt* = -30)
 (defglobal ?*bajaInt* = 4)
-(defglobal ?*percentMusc* = 0.3)
+(defglobal ?*percentMusculacion* = 0.3)
+(defglobal ?*percentAerobico* = 0.5)
 (defglobal ?*minEqui* = 1)
 (defglobal ?*plusExtra* = 50)
 (defglobal ?*muchos* = 0.7)
@@ -177,7 +178,39 @@
 (definstances instancies 
 ([Anciano_Class0] of  Problemas
 
-	(Nombre "Caridiovascular"))
+	(Nombre "Cardiovascular"))
+
+([Anciano_Class10000] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10015]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class10018])
+	(Duracion 61)
+	(Ejercicios
+		[Anciano_Class20025]
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20036]
+		[Anciano_Class20041]
+		[Anciano_Class20035]
+		[Anciano_Class20028]
+		[Anciano_Class20032]
+		[Anciano_Class20029])
+	(IntensidadMaxima 4)
+	(IntensidadMinima 4)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20007]
+		[Anciano_Class20004]
+		[Anciano_Class20055]
+		[Anciano_Class10001])
+	(Nombre "RutinaMus1")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
 
 ([Anciano_Class10001] of  Parte
 
@@ -280,9 +313,8 @@
 		[Anciano_Class20034])
 	(IntensidadMaxima 3)
 	(IntensidadMinima 2)
-	(Nombre "Rutina1")
+	(Nombre "RutinaAE1")
 	(Score 0))
-
 
 ([Anciano_Class20014] of  Rutina
 
@@ -306,7 +338,7 @@
 		[Anciano_Class20034])
 	(IntensidadMaxima 2)
 	(IntensidadMinima 1)
-	(Nombre "Rutina2")
+	(Nombre "RutinaAE2")
 	(Score 0))
 
 ([Anciano_Class20015] of  Aerobico
@@ -506,7 +538,7 @@
 		[Anciano_Class20055]
 		[Anciano_Class20003]
 		[Anciano_Class20008])
-	(Nombre "Rutina3")
+	(Nombre "RutinaAE3")
 	(Perjudica
 		[Anciano_Class10015]
 		[Anciano_Class10017]
@@ -518,6 +550,160 @@
 ([Anciano_Class20055] of  Parte
 
 	(Nombre "Rodilla"))
+
+([Anciano_Class30003] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10015]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class10018])
+	(Duracion 61)
+	(Ejercicios
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20025]
+		[Anciano_Class20046]
+		[Anciano_Class20042]
+		[Anciano_Class20028]
+		[Anciano_Class20032]
+		[Anciano_Class20030])
+	(IntensidadMaxima 4)
+	(IntensidadMinima 4)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20004]
+		[Anciano_Class20055]
+		[Anciano_Class10001])
+	(Nombre "RutinaMus4")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30004] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10015]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class10018])
+	(Duracion 61)
+	(Ejercicios
+		[Anciano_Class20025]
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20040]
+		[Anciano_Class20037]
+		[Anciano_Class20035]
+		[Anciano_Class20028]
+		[Anciano_Class20032]
+		[Anciano_Class20029])
+	(IntensidadMaxima 7)
+	(IntensidadMinima 7)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20007]
+		[Anciano_Class20004]
+		[Anciano_Class20055]
+		[Anciano_Class10001])
+	(Nombre "RutinaMus2")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30005] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10015]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class10018])
+	(Duracion 61)
+	(Ejercicios
+		[Anciano_Class20025]
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20039]
+		[Anciano_Class20038]
+		[Anciano_Class20035]
+		[Anciano_Class20028]
+		[Anciano_Class20032]
+		[Anciano_Class20029])
+	(IntensidadMaxima 9)
+	(IntensidadMinima 9)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20007]
+		[Anciano_Class20004]
+		[Anciano_Class20055]
+		[Anciano_Class10001])
+	(Nombre "RutinaMus3")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30006] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10015]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class10018])
+	(Duracion 61)
+	(Ejercicios
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20025]
+		[Anciano_Class20048]
+		[Anciano_Class20043]
+		[Anciano_Class20028]
+		[Anciano_Class20032]
+		[Anciano_Class20030])
+	(IntensidadMaxima 7)
+	(IntensidadMinima 7)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20004]
+		[Anciano_Class20055]
+		[Anciano_Class10001])
+	(Nombre "RutinaMus5")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30007] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10015]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class10018])
+	(Duracion 61)
+	(Ejercicios
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20025]
+		[Anciano_Class20047]
+		[Anciano_Class20044]
+		[Anciano_Class20028]
+		[Anciano_Class20032]
+		[Anciano_Class20030])
+	(IntensidadMaxima 9)
+	(IntensidadMinima 9)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20004]
+		[Anciano_Class20055]
+		[Anciano_Class10001])
+	(Nombre "RutinaMus6")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
 
 ([Anciano_Class30019] of  Rutina
 
@@ -544,7 +730,7 @@
 		[Anciano_Class20055]
 		[Anciano_Class20003]
 		[Anciano_Class20008])
-	(Nombre "Rutina4")
+	(Nombre "RutinaAE4")
 	(Perjudica [Anciano_Class10004])
 	(Score 0))
 
@@ -573,7 +759,7 @@
 		[Anciano_Class20055]
 		[Anciano_Class20003]
 		[Anciano_Class20008])
-	(Nombre "Rutina5")
+	(Nombre "RutinaAE5")
 	(Perjudica [Anciano_Class10004])
 	(Score 0))
 
@@ -700,15 +886,19 @@
 
 ;funcion para consultar si una rutina contiene un tipo de 
 (deffunction MAIN::rutinaEsDelTipo (?rutina ?tipo)
-	(bind $?listaEjercicios (send ?rutina get-Ejercicios))
 	(bind ?trobat FALSE)
-	(progn$ (?ejercicio $?listaEjercicios)
-		(if (not ?trobat)
-			then
-			(bind ?trobat (eq (class ?ejercicio) ?tipo))
+	(if (eq ?rutina nil)
+		then
+		(bind $?listaEjercicios (send ?rutina get-Ejercicios))
+		(progn$ (?ejercicio $?listaEjercicios)
+			(if (not ?trobat)
+				then
+				(bind ?trobat (eq (class ?ejercicio) ?tipo))
+			)
 		)
 	)
 	?trobat
+		
 )
 
 
@@ -793,9 +983,8 @@
 (defrule characterisation::caidas "Pregunta por caidas"
 	(declare (salience 5))
 	(not (caidas ?))
-	?f1 <- (probMov FALSE)
+	(probMov FALSE)
 	=>
-	(retract ?f1)
 	(assert (caidas (yes-no-question "Ha tenido caidas recientemente? ")))
 )
 
@@ -1335,9 +1524,12 @@
 	(if (eq ?pM TRUE)
 		then 
 		(bind ?curr-rec (maximum-score-tipo Equilibrio $?Unorderedlist))
-		(bind $?result (insert$ $?result (+ (length$ $?result) 1) ?curr-rec))
-		(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
-		(bind ?ant-Musc (rutinaEsDelTipo ?curr-rec Musculacion))
+		(if (not (eq ?curr-rec nil))
+			then
+			(bind $?result (insert$ $?result (+ (length$ $?result) 1) ?curr-rec))
+			(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
+			(bind ?ant-Musc (rutinaEsDelTipo ?curr-rec Musculacion))
+		)
 	)
 	
 	(while (and (not (eq (length$ $?Unorderedlist) 0)) (< (length$ $?result) ?d))  do ;; pairing it with comment below, should get more cities!
@@ -1360,7 +1552,7 @@
 	(not (vigilaMusculacion FALSE)) 
 	?f1 <- (resultado $?result)
 	(dias ?d)
-	(test (> (num-rutinas-tipo Musculacion $?result) (* ?d ?*percentMusc*)) )
+	(test (> (num-rutinas-tipo Musculacion $?result) (* ?d ?*percentMusculacion*)) )
 	=>
 	(bind ?minimum -1)
 	(bind ?ejercicio nil)
@@ -1375,23 +1567,68 @@
 			)
 		)
 	)
-	(bind ?aux-Score (send ?ejercicio get-Score))
-	(send ?ejercicio put-Score -10)
-	
-	(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
-	(bind $?result-nou (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
-	
-	(bind ?curr-rec (maximum-score-no-tipo Musculacion $?Unorderedlist))
-	(if (eq ?curr-rec nil)
-		then 
-		(assert (vigilaMusculacion FALSE))
-		else
-		(bind $?result-nou (insert$ $?result-nou (+ (length$ $?result-nou) 1) ?curr-rec))
-		(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
-		(retract ?f1)
-		(assert (resultado $?result-nou))
+	(if (not (eq ?ejercicio nil))
+		then
+		(bind ?aux-Score (send ?ejercicio get-Score))
+		(send ?ejercicio put-Score -10)
+		
+		(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+		(bind $?result-nou (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+		
+		(bind ?curr-rec (maximum-score-no-tipo Musculacion $?Unorderedlist))
+		(if (eq ?curr-rec nil)
+			then 
+			(assert (vigilaMusculacion FALSE))
+			else
+			(bind $?result-nou (insert$ $?result-nou (+ (length$ $?result-nou) 1) ?curr-rec))
+			(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
+			(retract ?f1)
+			(assert (resultado $?result-nou))
+		)
+		(send ?ejercicio put-Score ?aux-Score)
 	)
-	(send ?ejercicio put-Score ?aux-Score)
+)
+
+(defrule construction::vigilaAerobico
+	(start TRUE)
+	(not (vigilaAerobico FALSE)) 
+	?f1 <- (resultado $?result)
+	(dias ?d)
+	(test (< (num-rutinas-tipo Aerobico $?result) (* ?d ?*percentAerobico*)) )
+	=>
+	(bind ?minimum -1)
+	(bind ?ejercicio nil)
+	(progn$ (?curr-ejercicio $?result)
+		(bind ?curr-sc (send ?curr-ejercicio get-Score))
+		(if (eq (rutinaEsDelTipo ?curr-ejercicio Aerobico) FALSE)
+			then
+			(if (< ?curr-sc ?minimum)
+				then 
+				(bind ?minimum ?curr-sc)
+				(bind ?ejercicio ?curr-ejercicio)
+			)
+		)
+	)
+	(if (not (eq ?ejercicio nil))
+		then
+		(bind ?aux-Score (send ?ejercicio get-Score))
+		(send ?ejercicio put-Score -10)
+		
+		(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+		(bind $?result-nou (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+		
+		(bind ?curr-rec (maximum-score-tipo Aerobico $?Unorderedlist))
+		(if (eq ?curr-rec nil)
+			then 
+			(assert (vigilaAerobico FALSE))
+			else
+			(bind $?result-nou (insert$ $?result-nou (+ (length$ $?result-nou) 1) ?curr-rec))
+			(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
+			(retract ?f1)
+			(assert (resultado $?result-nou))
+		)
+		(send ?ejercicio put-Score ?aux-Score)
+	)
 )
 
 (defrule construction::toPrint "Switches to printing"
