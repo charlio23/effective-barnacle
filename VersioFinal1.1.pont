@@ -1,0 +1,166 @@
+; Sun Dec 09 20:29:28 CET 2018
+; 
+;+ (version "3.5")
+;+ (build "Build 663")
+
+
+(defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
+	(is-a USER)
+	(role abstract)
+	(multislot MusculosTrabajados
+;+		(comment "Trabaja")
+		(type INSTANCE)
+;+		(allowed-classes Parte)
+		(create-accessor read-write))
+	(multislot Beneficia
+		(type INSTANCE)
+;+		(allowed-classes Problemas)
+		(create-accessor read-write))
+	(single-slot Duracion
+;+		(comment "Minutos")
+		(type INTEGER)
+		(range 0 90)
+		(default 30)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot IntensidadMinima
+		(type INTEGER)
+		(range 0 10)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Nombre
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Porcentaje+del+Maximo
+		(type INTEGER)
+		(range 0 100)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Tipo
+		(type SYMBOL)
+		(allowed-values Calentamiento Estiramiento Rutina Ejercicio)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Grupo+muscular
+		(type SYMBOL)
+		(allowed-values Grande Pequeno)
+;+		(cardinality 0 1)
+		(create-accessor read-write))
+	(single-slot IntensidadMaxima
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Ejercicios
+		(type INSTANCE)
+;+		(allowed-classes Ejercicio)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Score
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Perjudica
+		(type INSTANCE)
+;+		(allowed-classes Problemas)
+		(create-accessor read-write)))
+
+(defclass Ejercicio
+	(is-a USER)
+	(role concrete)
+	(single-slot Nombre
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot Duracion
+;+		(comment "Minutos")
+		(type INTEGER)
+		(range 0 90)
+		(default 30)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Aerobico
+	(is-a Ejercicio)
+	(role concrete))
+
+(defclass Musculacion
+	(is-a Ejercicio)
+	(role concrete)
+	(single-slot Porcentaje+del+Maximo
+		(type INTEGER)
+		(range 0 100)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Equilibrio
+	(is-a Ejercicio)
+	(role concrete))
+
+(defclass Flexibilidad
+	(is-a Ejercicio)
+	(role concrete))
+
+(defclass Problemas
+	(is-a USER)
+	(role concrete)
+	(single-slot Nombre
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Parte
+	(is-a USER)
+	(role concrete)
+	(single-slot Nombre
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
+
+(defclass Rutina
+	(is-a USER)
+	(role concrete)
+	(single-slot Nombre
+		(type STRING)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot MusculosTrabajados
+;+		(comment "Trabaja")
+		(type INSTANCE)
+;+		(allowed-classes Parte)
+		(create-accessor read-write))
+	(single-slot IntensidadMaxima
+		(type INTEGER)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Beneficia
+		(type INSTANCE)
+;+		(allowed-classes Problemas)
+		(create-accessor read-write))
+	(multislot Ejercicios
+		(type INSTANCE)
+;+		(allowed-classes Ejercicio)
+		(cardinality 1 ?VARIABLE)
+		(create-accessor read-write))
+	(single-slot Score
+		(type INTEGER)
+		(default 0)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(multislot Perjudica
+		(type INSTANCE)
+;+		(allowed-classes Problemas)
+		(create-accessor read-write))
+	(single-slot Duracion
+;+		(comment "Minutos")
+		(type INTEGER)
+		(range 0 90)
+		(default 30)
+;+		(cardinality 1 1)
+		(create-accessor read-write))
+	(single-slot IntensidadMinima
+		(type INTEGER)
+		(range 0 10)
+;+		(cardinality 1 1)
+		(create-accessor read-write)))
