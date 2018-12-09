@@ -758,8 +758,16 @@
 (defrule characterisation::cantEjercicio "Asks for cantEjercicio"
 	(declare (salience 7))
 	(not (cantEjercicio ?))
+	(activo TRUE)
 	=>
 	(assert (cantEjercicio (num-question "Cuantos dias de ejercicio a la semana? " 0 7))) ;; TODO: change random values
+)
+
+(defrule characterisation::fumar "Pregunta por fumar"
+	(declare (salience 7))
+	(not (fumar ?))
+	=>
+	(assert (fumar (yes-no-question "Fuma? ")))
 )
 
 
@@ -824,6 +832,7 @@
 (defrule characterisation::pulmonar "Pregunta por pulmon"
 	(declare (salience 1))
 	(not (pulmonar ?))
+	(fumar FALSE)
 	=>
 	(assert (pulmonar (yes-no-question "Tiene problemas respiratorios o pulmonares? ")))
 )
@@ -835,11 +844,19 @@
 	(assert (diabetes (yes-no-question "Sufre usted de diabetes tipo II? ")))
 )
 
-(defrule characterisation::estado "Pregunta por estado fisico"
+(defrule characterisation::estado "Pregunta por estado fisico y "
 	(declare (salience 1))
 	(not (nivel ?))
+	(edad ?edad)
 	=>
-	(assert (nivel (num-question "Podria dar una puntuacion aproximada de su fisico?" 1 10)))
+	(bind ?fita1 (- 18 (/ ?edad 9)))
+	(bind ?fita2 (num-question "Podria dar una puntuacion aproximada de su fisico?" 1 10))
+	(if (> ?fita1 ?fita2)
+		then
+		(assert (nivel ?fita2))
+		else
+		(assert (nivel ?fita1))
+	)	
 )
 
 (defrule characterisation::actividad "Pregunta por actividad"
@@ -856,6 +873,21 @@
 	(sexo mujer)
 	=>
 	(assert (osteoporosis TRUE))
+)
+
+(defrule characterisation::fumarImpliesPulmonar "Si es fuma, tiene problemas pulmonares"
+	(declare (salience 10))
+	(fumar TRUE)
+	=>
+	(assert (pulmonar TRUE))
+)
+
+(defrule characterisation::fumarYHombreImpliesCardiaco "Si es fuma y es hombre, tiene problemas cardiacos"
+	(declare (salience 10))
+	(fumar TRUE)
+	(sexo hombre)
+	=>
+	(assert (cardiaco TRUE))
 )
 
 (defrule characterisation::caidaImpliesMov "Si tiene caidas, tiene problemas de movilidad"
@@ -1232,11 +1264,24 @@
 		(printout t crlf)
 	)
 	(printout t crlf crlf)
+	
+	(if (eq 0 (length$ $?list))
+		then 
+		(printout t crlf "No tenemos rutinas adecuadas para usted")
+	)
 
-
+	(assert (impresion TRUE))
 )
 
 
+
+
+(defrule printmod::spamDeFumar ""
+	(impresion TRUE)
+	(fumar TRUE)
+	=>
+	(printout t "Ademas, deberia de dejar de fumar" crlf)
+)
 
 (defrule printmod::printer2 ""
 	(oneDone TRUE)
