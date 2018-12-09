@@ -6,6 +6,10 @@
 (defglobal ?*penalBajaInt* = -15)
 (defglobal ?*penalAltaInt* = -30)
 (defglobal ?*bajaInt* = 4)
+(defglobal ?*percentMusc* = 0.3)
+(defglobal ?*minEqui* = 1)
+(defglobal ?*plusExtra* = 50)
+(defglobal ?*muchos* = 0.7)
 
 (defclass %3ACLIPS_TOP_LEVEL_SLOT_CLASS "Fake class to save top-level slot information"
 	(is-a USER)
@@ -789,8 +793,9 @@
 (defrule characterisation::caidas "Pregunta por caidas"
 	(declare (salience 5))
 	(not (caidas ?))
-	(probMov FALSE)
+	?f1 <- (probMov FALSE)
 	=>
+	(retract ?f1)
 	(assert (caidas (yes-no-question "Ha tenido caidas recientemente? ")))
 )
 
@@ -871,6 +876,7 @@
 (defrule characterisation::mujerImpliesOsteo "Si es mujer, mirar osteoporosis"
 	(declare (salience 10))
 	(sexo mujer)
+	(not (osteoporosis ?))
 	=>
 	(assert (osteoporosis TRUE))
 )
@@ -886,6 +892,7 @@
 	(declare (salience 10))
 	(fumar TRUE)
 	(sexo hombre)
+	(not (cardiaco ?))
 	=>
 	(assert (cardiaco TRUE))
 )
@@ -893,6 +900,7 @@
 (defrule characterisation::caidaImpliesMov "Si tiene caidas, tiene problemas de movilidad"
 	(declare (salience 10))
 	(caidas TRUE)
+	(not (probMov ?))
 	=>
 	(assert (probMov TRUE))
 	(assert (zonaAfectada piernas))
@@ -935,6 +943,35 @@
 		(assert (obesidad FALSE))
 	)
 )
+
+(defrule characterisation::hipertensionYObesidadImpliesDiabetes "Mirar si te diabetes"
+	(declare (salience 10))
+	(hipertension TRUE)
+	(obesidad TRUE)
+	(not (diabetes ?))
+	=>
+	(assert (diabetes TRUE))
+)
+
+(defrule characterisation::diabetesYObesidadImpliesHipertension "Mirar si te hipertension"
+	(declare (salience 10))
+	(diabetes TRUE)
+	(obesidad TRUE)
+	(not (hipertension ?))
+	=>
+	(assert (hipertension TRUE))
+)
+
+(defrule characterisation::fumarMuchoImpliesHipertensionYDiabetes "Que pasa si fuma mucho"
+	(declare (salience 10))
+	(fumar TRUE)
+	(not (diabetes ?))
+	(not (hipertension ?))
+	=>
+	(assert (diabetes TRUE))
+	(assert (hipertension TRUE))
+)
+
 
 (defrule characterisation::toProcessing "Switches focus to processing after nothing else to do"
 	(declare(salience -20))
@@ -992,6 +1029,34 @@
 		(if (< ?niv ?min)
 			then 
             (send ?curr-rutina put-Score (+ ?*scoreBase* (* (* (- ?min ?niv) (- ?min ?niv)) ?*penalAltaInt*)))
+        )
+	)
+)
+
+(defrule processing::scoreRutinasMusc "modify the score of each rutina"
+    (declare (salience 9)) ; higher salience as this sets their base score
+    (nivel ?niv) ; this is the what the user is interested in
+    ?fact <- (rutinaList (rutinas $?list))
+    (or (musculoesqueleticos TRUE) (osteoporosis TRUE))
+    =>
+    (progn$ (?curr-rutina $?list)
+		(if (eq (rutinaEsDelTipo Musculacion ?curr-rutina) TRUE)
+			then 
+            (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusExtra*))
+        )
+	)
+)
+
+(defrule processing::scoreRutinasEqui "modify the score of each rutina"
+    (declare (salience 9)) ; higher salience as this sets their base score
+    (nivel ?niv) ; this is the what the user is interested in
+    ?fact <- (rutinaList (rutinas $?list))
+    (and (probMov TRUE) (zonaAfectada piernas|ambos))
+    =>
+    (progn$ (?curr-rutina $?list)
+		(if (eq (rutinaEsDelTipo Equilibrio ?curr-rutina) TRUE)
+			then 
+            (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*plusExtra*))
         )
 	)
 )
@@ -1185,7 +1250,7 @@
 		else (if (< ?x 7)
 				then (assert (dias (+ ?x 1)))
 				else (assert (dias 7))
-			  )
+			 )
 	)
 )
 
@@ -1208,22 +1273,77 @@
 	?element
 )
 
+(deffunction construction::maximum-score-tipo (?tipo $?lista)
+	(bind ?maximum -1)
+	(bind ?element nil)
+	(progn$ (?curr-element $?lista)
+		(bind ?curr-sc (send ?curr-element get-Score))
+		(if (eq (rutinaEsDelTipo ?curr-element ?tipo) TRUE)
+			then
+			(if (> ?curr-sc ?maximum)
+				then 
+				(bind ?maximum ?curr-sc)
+				(bind ?element ?curr-element)
+			)
+		)
+	)
+	?element
+)
+
+(deffunction construction::maximum-score-no-tipo (?tipo $?lista)
+	(bind ?maximum -1)
+	(bind ?element nil)
+	(progn$ (?curr-element $?lista)
+		(bind ?curr-sc (send ?curr-element get-Score))
+		(if (eq (rutinaEsDelTipo ?curr-element ?tipo) FALSE)
+			then
+			(if (> ?curr-sc ?maximum)
+				then 
+				(bind ?maximum ?curr-sc)
+				(bind ?element ?curr-element)
+			)
+		)
+	)
+	?element
+)
+
+(deffunction construction::num-rutinas-tipo (?tipo $?lista)
+	(bind ?count 0)
+	(progn$ (?curr-element $?lista)
+		(if (eq (rutinaEsDelTipo ?curr-element ?tipo) TRUE)
+			then
+			(bind ?count (+ ?count 1))
+		)
+	)
+	?count
+)
+
 
 ; First solution generation, minimal cost with all other restrictions.
 (defrule construction::Start "Initializes the solution with minimum requirements"
 	(edad ?)
 	(dias ?d)
+	(probMov ?pM)
 	(rutinaList)
 	=>
-	(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score -12331231313)))
+	(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
 	
     ;Preliminar selection of rutinas
     (bind ?ant-Musc FALSE)
 	(bind $?result (create$ ))
+	
+	(if (eq ?pM TRUE)
+		then 
+		(bind ?curr-rec (maximum-score-tipo Equilibrio $?Unorderedlist))
+		(bind $?result (insert$ $?result (+ (length$ $?result) 1) ?curr-rec))
+		(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
+		(bind ?ant-Musc (rutinaEsDelTipo ?curr-rec Musculacion))
+	)
+	
 	(while (and (not (eq (length$ $?Unorderedlist) 0)) (< (length$ $?result) ?d))  do ;; pairing it with comment below, should get more cities!
 		(if (eq ?ant-Musc TRUE)
 			then 
-			(bind ?curr-rec (maximum-score $?Unorderedlist))
+			(bind ?curr-rec (maximum-score-penaliza-tipo Musculacion $?Unorderedlist))
 			else
 			(bind ?curr-rec (maximum-score $?Unorderedlist))
 		)
@@ -1232,8 +1352,47 @@
 		(bind ?ant-Musc (rutinaEsDelTipo ?curr-rec Musculacion))
 	)
 	(assert (resultado $?result))
+	(assert (start TRUE))
 )
 
+(defrule construction::vigilaMusculacion
+	(start TRUE)
+	(not (vigilaMusculacion FALSE)) 
+	?f1 <- (resultado $?result)
+	(dias ?d)
+	(test (> (num-rutinas-tipo Musculacion $?result) (* ?d ?*percentMusc*)) )
+	=>
+	(bind ?minimum -1)
+	(bind ?ejercicio nil)
+	(progn$ (?curr-ejercicio $?result)
+		(bind ?curr-sc (send ?curr-ejercicio get-Score))
+		(if (eq (rutinaEsDelTipo ?curr-ejercicio Musculacion) TRUE)
+			then
+			(if (< ?curr-sc ?minimum)
+				then 
+				(bind ?minimum ?curr-sc)
+				(bind ?ejercicio ?curr-ejercicio)
+			)
+		)
+	)
+	(bind ?aux-Score (send ?ejercicio get-Score))
+	(send ?ejercicio put-Score -10)
+	
+	(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+	(bind $?result-nou (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+	
+	(bind ?curr-rec (maximum-score-no-tipo Musculacion $?Unorderedlist))
+	(if (eq ?curr-rec nil)
+		then 
+		(assert (vigilaMusculacion FALSE))
+		else
+		(bind $?result-nou (insert$ $?result-nou (+ (length$ $?result-nou) 1) ?curr-rec))
+		(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
+		(retract ?f1)
+		(assert (resultado $?result-nou))
+	)
+	(send ?ejercicio put-Score ?aux-Score)
+)
 
 (defrule construction::toPrint "Switches to printing"
 	(declare (salience -20))
@@ -1267,7 +1426,7 @@
 	
 	(if (eq 0 (length$ $?list))
 		then 
-		(printout t crlf "No tenemos rutinas adecuadas para usted")
+		(printout t crlf "No tenemos rutinas adecuadas para usted." crlf)
 	)
 
 	(assert (impresion TRUE))
@@ -1280,7 +1439,13 @@
 	(impresion TRUE)
 	(fumar TRUE)
 	=>
-	(printout t "Ademas, deberia de dejar de fumar" crlf)
+	(printout t "Pero, además deberia de dejar de fumar." crlf)
+)
+(defrule printmod::spamDeSobrepeso ""
+	(impresion TRUE)
+	(obesidad TRUE)
+	=>
+	(printout t "Y recuerde que el ejercicio ha de ir acompañado de una dieta adecuada." crlf)
 )
 
 (defrule printmod::printer2 ""
