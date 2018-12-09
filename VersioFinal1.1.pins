@@ -1,4 +1,4 @@
-; Sun Dec 09 20:29:28 CET 2018
+; Sun Dec 09 22:12:34 CET 2018
 ; 
 ;+ (version "3.5")
 ;+ (build "Build 663")
@@ -42,10 +42,6 @@
 ([Anciano_Class10001] of  Parte
 
 	(Nombre "Cadera"))
-
-([Anciano_Class10003] of  Problemas
-
-	(Nombre "Musculo esqueletico"))
 
 ([Anciano_Class10004] of  Problemas
 
@@ -536,6 +532,153 @@
 		[Anciano_Class10001])
 	(Nombre "RutinaMus6")
 	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30009] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10004]
+		[Anciano_Class5]
+		[Anciano_Class10017]
+		[Anciano_Class10015]
+		[Anciano_Class0])
+	(Duracion 60)
+	(Ejercicios [Anciano_Class20049])
+	(IntensidadMaxima 3)
+	(IntensidadMinima 7)
+	(MusculosTrabajados
+		[Anciano_Class20008]
+		[Anciano_Class20003]
+		[Anciano_Class20055]
+		[Anciano_Class20004]
+		[Anciano_Class10001])
+	(Nombre "RutinaAQ1")
+	(Perjudica [Anciano_Class10018])
+	(Score 0))
+
+([Anciano_Class30010] of  Rutina
+
+	(Beneficia
+		[Anciano_Class0]
+		[Anciano_Class10017]
+		[Anciano_Class5]
+		[Anciano_Class10015]
+		[Anciano_Class10004]
+		[Anciano_Class10018])
+	(Duracion 68)
+	(Ejercicios
+		[Anciano_Class20021]
+		[Anciano_Class20025]
+		[Anciano_Class20023]
+		[Anciano_Class20016]
+		[Anciano_Class20034]
+		[Anciano_Class20027]
+		[Anciano_Class20031]
+		[Anciano_Class20030])
+	(IntensidadMaxima 2)
+	(IntensidadMinima 8)
+	(MusculosTrabajados
+		[Anciano_Class10001]
+		[Anciano_Class20008]
+		[Anciano_Class20003]
+		[Anciano_Class20004]
+		[Anciano_Class20055])
+	(Nombre "RutinaDanza")
+	(Score 0))
+
+([Anciano_Class30011] of  Rutina
+
+	(Beneficia
+		[Anciano_Class0]
+		[Anciano_Class10017]
+		[Anciano_Class5]
+		[Anciano_Class10015]
+		[Anciano_Class10018])
+	(Duracion 30)
+	(Ejercicios
+		[Anciano_Class20027]
+		[Anciano_Class20035]
+		[Anciano_Class20030]
+		[Anciano_Class20018])
+	(IntensidadMaxima 5)
+	(IntensidadMinima 8)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20007]
+		[Anciano_Class20008])
+	(Nombre "RutinaRemo1")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30012] of  Rutina
+
+	(Beneficia
+		[Anciano_Class0]
+		[Anciano_Class10017]
+		[Anciano_Class5]
+		[Anciano_Class10015]
+		[Anciano_Class10018])
+	(Duracion 30)
+	(Ejercicios
+		[Anciano_Class20027]
+		[Anciano_Class20035]
+		[Anciano_Class20030]
+		[Anciano_Class20019])
+	(IntensidadMaxima 7)
+	(IntensidadMinima 10)
+	(MusculosTrabajados
+		[Anciano_Class20003]
+		[Anciano_Class20007]
+		[Anciano_Class20008])
+	(Nombre "RutinaRemo2")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30013] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class5])
+	(Duracion 60)
+	(Ejercicios [Anciano_Class20015])
+	(IntensidadMaxima 7)
+	(IntensidadMinima 8)
+	(MusculosTrabajados
+		[Anciano_Class10001]
+		[Anciano_Class20008]
+		[Anciano_Class20003]
+		[Anciano_Class20006]
+		[Anciano_Class20007]
+		[Anciano_Class20055]
+		[Anciano_Class20004])
+	(Nombre "RutinaBC")
+	(Perjudica
+		[Anciano_Class10015]
+		[Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30014] of  Rutina
+
+	(Beneficia
+		[Anciano_Class0]
+		[Anciano_Class10017]
+		[Anciano_Class5]
+		[Anciano_Class10015]
+		[Anciano_Class10004]
+		[Anciano_Class10018])
+	(Duracion 30)
+	(Ejercicios
+		[Anciano_Class20021]
+		[Anciano_Class20025]
+		[Anciano_Class20024]
+		[Anciano_Class20023]
+		[Anciano_Class20022]
+		[Anciano_Class20026]
+		[Anciano_Class20020])
+	(IntensidadMaxima 1)
+	(IntensidadMinima 1)
+	(Nombre "RutinaEQ1")
 	(Score 0))
 
 ([Anciano_Class30019] of  Rutina
