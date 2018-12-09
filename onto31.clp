@@ -580,6 +580,18 @@
 	?element
 )
 
+;funcion para consultar si una rutina contiene un tipo de 
+(deffunction MAIN::rutinaEsDelTipo (?rutina ?tipo)
+	(bind $?listaEjercicios (send ?rutina get-Ejercicios))
+	(bind ?trobat FALSE)
+	(progn$ (?ejercicio $?listaEjercicios)
+		(if (not ?trobat)
+			then
+			(bind ?trobat (eq (class ?ejercicio) ?tipo))
+		)
+	)
+	?trobat
+)
 ;;; Rules for main and characterisation
 
 (defrule MAIN::system-banner "First rule of program"
@@ -820,7 +832,7 @@
     (progn$ (?curr-rutina $?list)
 		(bind ?max (send ?curr-rutina get-IntensidadMaxima))
 		(bind ?min (send ?curr-rutina get-IntensidadMinima))
-		(if (and (>= ?max ?niv) (>= ?niv ?min)))
+		(if (and (>= ?max ?niv) (>= ?niv ?min))
 			then 
             (send ?curr-rutina put-Score ?*scoreBase*)
         )
@@ -1080,4 +1092,3 @@
 
 
 )
-
