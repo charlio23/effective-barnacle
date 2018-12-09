@@ -1,4 +1,4 @@
-(defglobal ?*scoreBase* = 350)
+(defglobal ?*scoreBase* = 1000)
 (defglobal ?*plus* = 50)
 (defglobal ?*penal* = -100)
 (defglobal ?*plusMov* = 75)
@@ -185,7 +185,7 @@
 
 ([Anciano_Class10004] of  Problemas
 
-	(Nombre "Artritis"))
+	(Nombre "Osteoporosis"))
 
 ([Anciano_Class10007] of  Aerobico
 
@@ -253,6 +253,57 @@
 ([Anciano_Class20008] of  Parte
 
 	(Nombre "Cardio"))
+
+([Anciano_Class20010] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10004]
+		[Anciano_Class0]
+		[Anciano_Class10018]
+		[Anciano_Class10015]
+		[Anciano_Class10017]
+		[Anciano_Class5])
+	(Duracion 76)
+	(Ejercicios
+		[Anciano_Class20034]
+		[Anciano_Class20031]
+		[Anciano_Class20030]
+		[Anciano_Class20032]
+		[Anciano_Class10007]
+		[Anciano_Class20031]
+		[Anciano_Class20028]
+		[Anciano_Class20030]
+		[Anciano_Class20034])
+	(IntensidadMaxima 3)
+	(IntensidadMinima 2)
+	(Nombre "Rutina1")
+	(Score 0))
+
+
+([Anciano_Class20014] of  Rutina
+
+	(Beneficia
+		[Anciano_Class10004]
+		[Anciano_Class0]
+		[Anciano_Class10018]
+		[Anciano_Class10015]
+		[Anciano_Class10017]
+		[Anciano_Class5])
+	(Duracion 46)
+	(Ejercicios
+		[Anciano_Class20034]
+		[Anciano_Class20031]
+		[Anciano_Class20030]
+		[Anciano_Class20032]
+		[Anciano_Class10011]
+		[Anciano_Class20031]
+		[Anciano_Class20028]
+		[Anciano_Class20030]
+		[Anciano_Class20034])
+	(IntensidadMaxima 2)
+	(IntensidadMinima 1)
+	(Nombre "Rutina2")
+	(Score 0))
 
 ([Anciano_Class20015] of  Aerobico
 
@@ -433,32 +484,94 @@
 
 ([Anciano_Class20051] of  Rutina
 
-	(Beneficia
-		[Anciano_Class10004]
-		[Anciano_Class0]
-		[Anciano_Class10018]
-		[Anciano_Class10015]
-		[Anciano_Class10017]
-		[Anciano_Class5])
-	(Duracion 80)
+	(Beneficia [Anciano_Class10018])
+	(Duracion 46)
 	(Ejercicios
 		[Anciano_Class20034]
 		[Anciano_Class20031]
 		[Anciano_Class20030]
 		[Anciano_Class20032]
-		[Anciano_Class10007]
+		[Anciano_Class10008]
 		[Anciano_Class20031]
 		[Anciano_Class20028]
 		[Anciano_Class20030]
 		[Anciano_Class20034])
-	(IntensidadMaxima 3)
-	(IntensidadMinima 2)
-	(Nombre "Rutina1")
+	(IntensidadMaxima 8)
+	(IntensidadMinima 7)
+	(MusculosTrabajados
+		[Anciano_Class20055]
+		[Anciano_Class20003]
+		[Anciano_Class20008])
+	(Nombre "Rutina3")
+	(Perjudica
+		[Anciano_Class10015]
+		[Anciano_Class10017]
+		[Anciano_Class0]
+		[Anciano_Class5]
+		[Anciano_Class10004])
 	(Score 0))
 
 ([Anciano_Class20055] of  Parte
 
 	(Nombre "Rodilla"))
+
+([Anciano_Class30019] of  Rutina
+
+	(Beneficia
+		[Anciano_Class0]
+		[Anciano_Class10018]
+		[Anciano_Class10015]
+		[Anciano_Class10017]
+		[Anciano_Class5])
+	(Duracion 46)
+	(Ejercicios
+		[Anciano_Class20034]
+		[Anciano_Class20031]
+		[Anciano_Class20030]
+		[Anciano_Class20032]
+		[Anciano_Class10010]
+		[Anciano_Class20031]
+		[Anciano_Class20028]
+		[Anciano_Class20030]
+		[Anciano_Class20034])
+	(IntensidadMaxima 4)
+	(IntensidadMinima 3)
+	(MusculosTrabajados
+		[Anciano_Class20055]
+		[Anciano_Class20003]
+		[Anciano_Class20008])
+	(Nombre "Rutina4")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
+
+([Anciano_Class30020] of  Rutina
+
+	(Beneficia
+		[Anciano_Class0]
+		[Anciano_Class10018]
+		[Anciano_Class10015]
+		[Anciano_Class10017]
+		[Anciano_Class5])
+	(Duracion 46)
+	(Ejercicios
+		[Anciano_Class20034]
+		[Anciano_Class20031]
+		[Anciano_Class20030]
+		[Anciano_Class20032]
+		[Anciano_Class10012]
+		[Anciano_Class20031]
+		[Anciano_Class20028]
+		[Anciano_Class20030]
+		[Anciano_Class20034])
+	(IntensidadMaxima 6)
+	(IntensidadMinima 5)
+	(MusculosTrabajados
+		[Anciano_Class20055]
+		[Anciano_Class20003]
+		[Anciano_Class20008])
+	(Nombre "Rutina5")
+	(Perjudica [Anciano_Class10004])
+	(Score 0))
 
 ([Anciano_Class5] of  Problemas
 
@@ -580,6 +693,7 @@
 	?element
 )
 
+
 ;funcion para consultar si una rutina contiene un tipo de 
 (deffunction MAIN::rutinaEsDelTipo (?rutina ?tipo)
 	(bind $?listaEjercicios (send ?rutina get-Ejercicios))
@@ -592,6 +706,8 @@
 	)
 	?trobat
 )
+
+
 ;;; Rules for main and characterisation
 
 (defrule MAIN::system-banner "First rule of program"
@@ -769,6 +885,7 @@
 
 (deffunction characterisation::imc (?alt ?pes)
     (bind ?im (/ ?pes (* (/ ?alt 100) (/ ?alt 100))))
+	?im
 )
 
 ;calcul del IMC per veure si hi ha sobrepes
@@ -951,32 +1068,33 @@
     (progn$ (?curr-rutina $?list)
         (bind $?list2 (send ?curr-rutina get-MusculosTrabajados))
         (progn$ (?curr-parte $?list2)
-            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Cadera")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Cadera")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
             )       
-            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Piernas")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Piernas")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
             )       
-            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Rodilla")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+            (if (and (and (or (eq ?za piernas) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Rodilla")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
             )       
-            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Hombros")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Hombros")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
             )       
-            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Pectoral")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Pectoral")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
             )       
-            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Espalda")) (>= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
+            (if (and (and (or (eq ?za brazos) (eq ?za ambos)) (eq (send ?curr-parte get-Nombre) "Espalda")) (<= (send ?curr-rutina get-IntensidadMaxima) ?*bajaInt*))
                 then
-                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penalMov*))
+                (send ?curr-rutina put-Score (+ (send ?curr-rutina get-Score) ?*penal*))
             )       
         )
 	)
+    
 )
 
 
@@ -1040,25 +1158,50 @@
 )
 
 
+(deffunction construction::maximum-score-penaliza-tipo (?tipo $?lista)
+	(bind ?maximum -1)
+	(bind ?element nil)
+	(progn$ (?curr-element $?lista)
+		(bind ?curr-sc (send ?curr-element get-Score))
+		(if (eq (rutinaEsDelTipo ?curr-element ?tipo) TRUE)
+			then
+			(bind ?curr-sc (* ?curr-sc 0.4))
+		) 
+		(if (> ?curr-sc ?maximum)
+			then 
+			(bind ?maximum ?curr-sc)
+			(bind ?element ?curr-element)
+		)
+	)
+	?element
+)
+
+
 ; First solution generation, minimal cost with all other restrictions.
 (defrule construction::Start "Initializes the solution with minimum requirements"
 	(edad ?)
 	(dias ?d)
 	(rutinaList)
 	=>
-	(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score 0)))
+	(bind $?Unorderedlist (find-all-instances ((?inst Rutina)) (> ?inst:Score -12331231313)))
 	
     ;Preliminar selection of rutinas
-    
+    (bind ?ant-Musc FALSE)
 	(bind $?result (create$ ))
 	(while (and (not (eq (length$ $?Unorderedlist) 0)) (< (length$ $?result) ?d))  do ;; pairing it with comment below, should get more cities!
-		(bind ?curr-rec (maximum-score $?Unorderedlist))
+		(if (eq ?ant-Musc TRUE)
+			then 
+			(bind ?curr-rec (maximum-score $?Unorderedlist))
+			else
+			(bind ?curr-rec (maximum-score $?Unorderedlist))
+		)
 		(bind $?result (insert$ $?result (+ (length$ $?result) 1) ?curr-rec))
 		(send ?curr-rec put-Score (* (send ?curr-rec get-Score) 0.7))
+		(bind ?ant-Musc (rutinaEsDelTipo ?curr-rec Musculacion))
 	)
-	
 	(assert (resultado $?result))
 )
+
 
 (defrule construction::toPrint "Switches to printing"
 	(declare (salience -20))
@@ -1091,4 +1234,14 @@
 	(printout t crlf crlf)
 
 
+)
+
+
+
+(defrule printmod::printer2 ""
+	(oneDone TRUE)
+	(nombre ?n)
+	(resultado $?result)
+	=>
+	(Myprint ?n $?result)
 )
