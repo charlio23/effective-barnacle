@@ -952,9 +952,14 @@
 (defrule characterisation::cantEjercicio "Asks for cantEjercicio"
 	(declare (salience 7))
 	(not (cantEjercicio ?))
-	(activo TRUE)
+	(activo ?act)
 	=>
-	(assert (cantEjercicio (num-question "Cuantos dias de ejercicio a la semana? " 0 7))) ;; TODO: change random values
+	(if (eq ?act TRUE)
+		then
+		(assert (cantEjercicio (num-question "Cuantos dias de ejercicio a la semana? " 1 7))) ;; TODO: change random values
+		else
+		(assert (cantEjercicio 0))) ;; TODO: change random values
+	)
 )
 
 (defrule characterisation::fumar "Pregunta por fumar"
