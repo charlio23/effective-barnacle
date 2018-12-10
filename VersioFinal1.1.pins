@@ -139,12 +139,6 @@
 	(Nombre "RutinaAE1")
 	(Score 0))
 
-([Anciano_Class20012] of  %3AINSTANCE-ANNOTATION
-
-	(%3AANNOTATION-TEXT "Correr")
-	(%3ACREATION-TIMESTAMP "2018.12.08 23:00:54.965 CET")
-	(%3ACREATOR "Dean"))
-
 ([Anciano_Class20014] of  Rutina
 
 	(Beneficia
